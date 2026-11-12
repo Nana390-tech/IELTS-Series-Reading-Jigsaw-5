@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camels · Jigsaw Reading (IELTS style)</title>
+<style>
+:root{
+  --ink:#2B2238; --muted:#6B6276; --paper:#FCF7EF; --card:#FFFFFF; --line:#EBDCC6;
+  --A:#D9772B; --A-l:#FDEBDC; --B:#4B3F9E; --B-l:#E9E6F7; --AB:#B83280; --AB-l:#FAE3EF;
+  --ok:#1E8A55; --ok-l:#E3F5EA; --bad:#C23B35; --bad-l:#FBE5E3;
+  --serif:Georgia,"Times New Roman",serif;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",Tahoma,Arial,sans-serif;font-size:19px;line-height:1.6;color:var(--ink);background:var(--paper);
+  background-image:radial-gradient(rgba(217,119,43,.12) 2px,transparent 2.5px);background-size:34px 34px}
+button{font:inherit;cursor:pointer;color:inherit}
+header{background:linear-gradient(135deg,#2E2466,#5B3F9E 45%,#C2552B 85%,#E9963A);color:#fff;padding:20px 22px 0;position:relative;overflow:hidden}
+header h1{margin:0;font-family:var(--serif);font-size:30px;font-weight:700}
+header h1 .h{color:#FFD58A}
+header p{margin:2px 0 14px;opacity:.9;font-size:17px}
+.combs{position:absolute;right:14px;top:6px;font-size:58px;opacity:.25;letter-spacing:-8px}
+nav.tabs{display:flex;gap:6px;flex-wrap:wrap;max-width:1100px;margin:0 auto}
+nav.tabs button{border:0;border-radius:14px 14px 0 0;padding:10px 18px;font-weight:700;background:rgba(255,255,255,.14);color:#fff}
+nav.tabs button[aria-selected="true"]{background:var(--paper);color:var(--ink)}
+nav.tabs .dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:middle}
+main{max-width:1100px;margin:0 auto;padding:22px 18px 30px}
+.warn{border-radius:14px;padding:12px 16px;margin-bottom:16px;font-weight:600;display:flex;gap:10px;align-items:flex-start}
+.warn.A{background:var(--A-l);border:2px solid var(--A)}
+.warn.B{background:var(--B-l);border:2px solid var(--B)}
+.ar{direction:rtl;font-family:Tahoma,"Segoe UI",Arial,sans-serif;color:var(--B)}
+.grid{display:grid;grid-template-columns:1fr 290px;gap:20px;align-items:start}
+@media(max-width:860px){.grid{grid-template-columns:1fr}}
+article.text{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:24px 28px;-webkit-user-select:text;user-select:text}
+article.text.A{border-top:10px solid var(--A)}
+article.text.B{border-top:10px solid var(--B)}
+article.text h2{font-family:var(--serif);font-size:28px;margin:0 0 4px}
+.lab{display:inline-block;font-size:14px;font-weight:800;border-radius:99px;padding:2px 12px;margin-bottom:6px;color:#fff}
+.lab.A{background:var(--A)}.lab.B{background:var(--B)}.lab.AB{background:var(--AB)}
+#paras p{font-size:20px;line-height:1.8;margin:0 0 16px}
+aside.side{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:18px;position:sticky;top:12px}
+aside.side h3{margin:0 0 8px;font-size:19px}
+.hlbar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 6px}
+.pen{width:40px;height:40px;border-radius:50%;border:3px solid transparent;box-shadow:inset 0 0 0 2px rgba(0,0,0,.12)}
+.pen[aria-pressed="true"]{border-color:var(--ink)}
+.pen.y{background:#FFE58A}.pen.g{background:#BDEBC6}.pen.p{background:#F9C6D8}
+.pen.er{background:#fff;font-size:18px}
+.hlnote{font-size:14px;color:var(--muted);margin:0 0 6px}
+.clearhl{background:none;border:0;text-decoration:underline;font-size:14px;padding:0;margin:0 0 16px;color:var(--muted)}
+mark.hl{border-radius:3px;padding:0 1px;color:inherit}
+mark.hl.y{background:#FFE58A}mark.hl.g{background:#BDEBC6}mark.hl.p{background:#F9C6D8}
+body.erase #paras mark.hl{cursor:pointer;outline:1px dashed var(--bad)}
+.words{list-style:none;margin:0 0 16px;padding:0;font-size:16px}
+.words li{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--line);padding:5px 0}
+.words b{color:var(--ink)}
+.btn{border:0;border-radius:12px;padding:12px 20px;font-weight:700;background:var(--B);color:#fff;box-shadow:0 3px 0 #2E2466}
+.btn.amber{background:var(--A);color:#fff;box-shadow:0 3px 0 #9A4F14}
+.btn.ghost{background:#fff;border:2px solid var(--line);box-shadow:none;color:var(--ink)}
+.btn:active{transform:translateY(2px);box-shadow:none}
+.full{width:100%}
+.team{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#fff;border:2px solid var(--line);border-radius:16px;padding:16px;margin-bottom:18px}
+@media(max-width:620px){.team{grid-template-columns:1fr}}
+.team h3{grid-column:1/-1;margin:0;font-size:19px}
+.team label{display:block;font-weight:700;font-size:15px;margin-bottom:4px}
+.team input{width:100%;border:2px solid var(--line);border-radius:10px;padding:9px 12px;font-size:18px;background:#fff}
+.team .a input{border-color:var(--A)}.team .b input{border-color:var(--B)}
+.sec{background:#fff;border:2px solid var(--line);border-radius:18px;padding:20px 22px}
+.sec h2{font-family:var(--serif);margin:0 0 4px;font-size:26px}
+.inst{color:var(--muted);margin:0 0 12px}
+.q{border:2px solid var(--line);border-radius:14px;padding:14px 16px;margin:12px 0;background:#fff}
+.qh{display:flex;gap:10px;align-items:flex-start}
+.num{flex:none;width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px}
+.qt{font-weight:600;padding-top:3px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+@media(max-width:620px){.opts{grid-template-columns:1fr}}
+.opt{display:flex;gap:10px;align-items:center;text-align:left;border:2px solid var(--line);border-radius:12px;padding:9px 12px;background:#fff}
+.opt .lt{font-weight:800;color:var(--B);min-width:18px}
+.opt[aria-pressed="true"]{border-color:var(--B);background:var(--B-l)}
+.tfrow{display:flex;gap:8px;margin-top:10px}
+.tfrow .opt{flex:1;justify-content:center;font-weight:700;max-width:200px}
+.short{margin-top:10px;width:100%;max-width:420px;border:2px solid var(--line);border-radius:10px;padding:9px 12px;font-size:18px}
+.grp{background:var(--B-l);border-left:6px solid var(--B);border-radius:10px;padding:12px 16px;margin:22px 0 6px}
+.grp h3{margin:0 0 4px;font-size:19px}
+.grp p{margin:0;font-size:16px}
+.mlist{display:grid;grid-template-columns:repeat(3,1fr);gap:4px 16px;margin-top:8px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:16px}
+@media(max-width:620px){.mlist{grid-template-columns:1fr 1fr}}
+.tfrow .opt{max-width:none}
+.mrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.mrow .opt{width:52px;justify-content:center;font-weight:800}
+.lim{font-size:13px;color:var(--muted);margin-left:8px}
+.fig{margin:6px 0 20px;text-align:center;-webkit-user-select:none;user-select:none}
+.fig svg{width:100%;max-width:600px;height:auto;display:block;margin:0 auto}
+.fig figcaption{font-size:15px;color:var(--muted);font-style:italic;margin-top:6px}
+.q.right{border-color:var(--ok);background:var(--ok-l)}
+.q.wrong{border-color:var(--bad);background:var(--bad-l)}
+.q.done .opt,.q.done .short{pointer-events:none}
+.opt.correct{border-color:var(--ok)!important;background:#fff!important;box-shadow:0 0 0 2px var(--ok) inset}
+.fb{margin-top:10px;font-size:16px}
+.src{display:inline-block;font-size:13px;font-weight:800;border-radius:99px;padding:1px 10px;color:#fff;margin-right:6px}
+.src.A{background:var(--A)}.src.B{background:var(--B)}.src.AB{background:var(--AB)}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+.res{background:#fff;border:2px solid var(--line);border-radius:18px;padding:22px}
+.big{font-size:60px;font-weight:900;font-family:var(--serif);line-height:1}
+.split{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
+@media(max-width:620px){.split{grid-template-columns:1fr}}
+.sp{border-radius:14px;padding:14px;text-align:center;font-weight:700}
+.sp b{display:block;font-size:30px;font-family:var(--serif)}
+.sp.A{background:var(--A-l);border:2px solid var(--A)}.sp.B{background:var(--B-l);border:2px solid var(--B)}.sp.AB{background:var(--AB-l);border:2px solid var(--AB)}
+.cert{margin-top:20px;border:10px double var(--B);border-radius:20px;padding:34px 26px;text-align:center;background:linear-gradient(#fff,#FDF0E2);position:relative}
+.cert h4{font-family:var(--serif);font-size:36px;margin:4px 0 8px;color:var(--B)}
+.cert .nm{font-family:var(--serif);font-size:32px;font-weight:700;margin:10px 0;border-bottom:2px solid var(--B);display:inline-block;padding:0 20px}
+.seal{position:absolute;right:22px;top:22px;width:92px;height:92px;border-radius:50%;background:var(--B);color:#fff;font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2;transform:rotate(-10deg);box-shadow:0 0 0 5px #D8D2F2}
+@media(max-width:620px){.seal{display:none}}
+.empty{color:var(--muted);text-align:center;padding:30px}
+#toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,140%);background:var(--ink);color:#fff;padding:12px 20px;border-radius:14px;font-weight:600;transition:transform .3s;z-index:50;max-width:92vw;text-align:center}
+#toast.show{transform:translate(-50%,0)}
+canvas#cf{position:fixed;inset:0;pointer-events:none;z-index:40}
+footer{text-align:center;color:var(--muted);font-size:15px;padding:10px 0 30px}
+@media print{
+  header,nav,.noprint,footer,#toast,canvas{display:none!important}
+  body{background:#fff}
+  .res{border:0;padding:0}
+  .cert{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="combs">🐪 ☀️</div>
+  <h1>🐪 Camels: <span class="h">Ships of the Desert</span></h1>
+  <p>IELTS-style jigsaw reading for two · <span class="ar" style="color:#FFE3B8">قراءة تعاونية لطالبتين</span></p>
+  <nav class="tabs" role="tablist" id="tabs"></nav>
+</header>
+<main id="app"></main>
+<footer>Designed by: Nazila Motahari</footer>
+<div id="toast" role="status" aria-live="polite"></div>
+<canvas id="cf"></canvas>
+<script>
+const D={"title": "Camels: Ships of the Desert", "A": {"title": "Built for the Desert", "paras": ["Many people think that a camel's hump is full of water, but this is a myth. The hump actually stores fat, up to about 36 kilograms of it. When food is hard to find, the camel uses this fat for energy, and the hump slowly becomes smaller and may even lean to one side.", "Camels are also experts at saving water. In very hot weather, a camel can survive for about a week without drinking. When it does find water, it can drink around 100 litres in just ten minutes. Its special oval-shaped red blood cells can take in a lot of water quickly without bursting.", "Most mammals keep their body temperature almost the same all the time. A camel, however, lets its temperature change from about 34°C in the cool night to around 40°C during the hot day. Because of this, it does not need to sweat until its body reaches about 41°C, so it loses much less water.", "Sandstorms are another danger in the desert. Camels have two rows of long eyelashes and three eyelids on each eye. The third eyelid is thin and clear, so a camel can close it and still see where it is going. Camels can also close their nostrils completely to keep the sand out.", "Finally, a camel's feet are wide and soft. When the camel walks, its feet spread out under its weight, which stops it from sinking into the sand."], "gloss": [["myth", "خرافة"], ["hump", "سنام"], ["fat", "دهون"], ["survive", "يبقى على قيد الحياة"], ["litre", "لتر"], ["burst", "ينفجر"], ["mammal", "حيوان ثديي"], ["sweat", "يتعرّق"], ["eyelash", "رمش"], ["eyelid", "جفن"], ["nostril", "فتحة الأنف"], ["sink", "يغوص / يغرق"]], "bonus": ["Did you know? Cats, seals and birds also have a working third eyelid, just like camels.", "Bonus: Which camel fact surprised you most? Explain to your partner why."], "figs": [{"after": 0, "svg": "<svg viewBox=\"0 0 620 250\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"Two camels: one with a big hump full of fat, one with a small leaning hump\">\n<rect width=\"620\" height=\"250\" rx=\"16\" fill=\"#FBF3E6\"/>\n<line x1=\"20\" y1=\"205\" x2=\"600\" y2=\"205\" stroke=\"#E2CBA4\" stroke-width=\"3\"/>\n<g transform=\"translate(160 135) scale(1.0)\" fill=\"#C99A5B\" stroke=\"#8A6235\" stroke-width=\"2.5\" stroke-linejoin=\"round\">\n<rect x=\"-46\" y=\"10\" width=\"11\" height=\"62\" rx=\"5\"/><rect x=\"-30\" y=\"10\" width=\"11\" height=\"62\" rx=\"5\"/>\n<rect x=\"26\" y=\"10\" width=\"11\" height=\"62\" rx=\"5\"/><rect x=\"42\" y=\"10\" width=\"11\" height=\"62\" rx=\"5\"/>\n<path d=\"M-62 -2 q-14 10 -10 34\" fill=\"none\"/>\n<ellipse cx=\"0\" cy=\"0\" rx=\"64\" ry=\"30\"/>\n<path d=\"M-34 -22 Q-12 -86.0 30.0 -24 Z\"/>\n<path d=\"M50 -12 Q70 -30 74 -64 L90 -66 Q92 -30 66 6 Z\"/>\n<ellipse cx=\"94\" cy=\"-66\" rx=\"22\" ry=\"11\"/>\n<path d=\"M80 -76 l-3 -9 l7 5 z\"/>\n<circle cx=\"99\" cy=\"-69\" r=\"2.2\" fill=\"#8A6235\"/>\n</g>\n<g transform=\"translate(460 135) scale(1.0)\" fill=\"#C99A5B\" stroke=\"#8A6235\" stroke-width=\"2.5\" stroke-linejoin=\"round\">\n<rect x=\"-46\" y=\"10\" width=\"11\" height=\"62\" rx=\"5\"/><rect x=\"-30\" y=\"10\" width=\"11\" height=\"62\" rx=\"5\"/>\n<rect x=\"26\" y=\"10\" width=\"11\" height=\"62\" rx=\"5\"/><rect x=\"42\" y=\"10\" width=\"11\" height=\"62\" rx=\"5\"/>\n<path d=\"M-62 -2 q-14 10 -10 34\" fill=\"none\"/>\n<ellipse cx=\"0\" cy=\"0\" rx=\"64\" ry=\"30\"/>\n<path d=\"M-34 -22 Q10 -41.2 36.6 -24 Z\"/>\n<path d=\"M50 -12 Q70 -30 74 -64 L90 -66 Q92 -30 66 6 Z\"/>\n<ellipse cx=\"94\" cy=\"-66\" rx=\"22\" ry=\"11\"/>\n<path d=\"M80 -76 l-3 -9 l7 5 z\"/>\n<circle cx=\"99\" cy=\"-69\" r=\"2.2\" fill=\"#8A6235\"/>\n</g>\n<text x=\"160\" y=\"232\" text-anchor=\"middle\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"16\" font-weight=\"800\" fill=\"#3B2A1A\">well fed: hump full of FAT</text>\n<text x=\"460\" y=\"232\" text-anchor=\"middle\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"16\" font-weight=\"800\" fill=\"#3B2A1A\">no food for a long time</text>\n<text x=\"160\" y=\"38\" text-anchor=\"middle\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"14\" fill=\"#D9772B\" font-weight=\"700\">fat = energy store (up to ~36 kg)</text>\n<text x=\"460\" y=\"38\" text-anchor=\"middle\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"14\" fill=\"#D9772B\" font-weight=\"700\">fat used up → hump shrinks and leans</text>\n<g transform=\"translate(300 120)\"><circle r=\"20\" fill=\"#fff\" stroke=\"#B83280\" stroke-width=\"3\"/><text y=\"7\" text-anchor=\"middle\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"20\">💧</text><line x1=\"-14\" y1=\"-14\" x2=\"14\" y2=\"14\" stroke=\"#B83280\" stroke-width=\"4\"/></g>\n<text x=\"300\" y=\"166\" text-anchor=\"middle\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"12.5\" fill=\"#B83280\" font-weight=\"700\">no water</text>\n<text x=\"300\" y=\"181\" text-anchor=\"middle\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"12.5\" fill=\"#B83280\" font-weight=\"700\">inside!</text>\n</svg>", "cap": "The hump is a store of fat, not water."}, {"after": 2, "svg": "<svg viewBox=\"0 0 620 260\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"Graph: a camel's body temperature goes from about 34 degrees at night to about 40 degrees in the day\">\n<rect width=\"620\" height=\"260\" rx=\"16\" fill=\"#FBF3E6\"/>\n<rect x=\"70\" y=\"40\" width=\"125\" height=\"160\" fill=\"#E6E2F5\"/><rect x=\"466\" y=\"40\" width=\"104\" height=\"160\" fill=\"#E6E2F5\"/>\n<text x=\"132\" y=\"192\" text-anchor=\"middle\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"13\" fill=\"#4B3F9E\">🌙 night</text>\n<text x=\"341\" y=\"192\" text-anchor=\"middle\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"13\" fill=\"#D9772B\">☀️ day</text>\n<text x=\"518\" y=\"192\" text-anchor=\"middle\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"13\" fill=\"#4B3F9E\">🌙 night</text>\n<line x1=\"70\" y1=\"200\" x2=\"570\" y2=\"200\" stroke=\"#7A6A5A\" stroke-width=\"2\"/><line x1=\"70\" y1=\"40\" x2=\"70\" y2=\"200\" stroke=\"#7A6A5A\" stroke-width=\"2\"/>\n<line x1=\"70\" y1=\"69\" x2=\"570\" y2=\"69\" stroke=\"#B83280\" stroke-width=\"2\" stroke-dasharray=\"6 5\"/>\n<text x=\"320\" y=\"61\" text-anchor=\"middle\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"13\" font-weight=\"700\" fill=\"#B83280\">starts to sweat at about 41°C</text>\n<text x=\"62\" y=\"175\" text-anchor=\"end\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"12\" fill=\"#7A6A5A\">34°C</text><text x=\"62\" y=\"131\" text-anchor=\"end\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"12\" fill=\"#7A6A5A\">37°C</text><text x=\"62\" y=\"88\" text-anchor=\"end\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"12\" fill=\"#7A6A5A\">40°C</text>\n<text x=\"70\" y=\"218\" text-anchor=\"middle\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"12\" fill=\"#7A6A5A\">midnight</text><text x=\"195\" y=\"218\" text-anchor=\"middle\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"12\" fill=\"#7A6A5A\">6 am</text><text x=\"320\" y=\"218\" text-anchor=\"middle\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"12\" fill=\"#7A6A5A\">noon</text><text x=\"445\" y=\"218\" text-anchor=\"middle\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"12\" fill=\"#7A6A5A\">6 pm</text><text x=\"570\" y=\"218\" text-anchor=\"middle\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"12\" fill=\"#7A6A5A\">midnight</text>\n<polyline points=\"70.0,149.1 75.2,151.5 80.4,153.8 85.6,156.0 90.8,158.1 96.0,160.1 101.2,161.9 106.5,163.6 111.7,165.1 116.9,166.4 122.1,167.6 127.3,168.6 132.5,169.4 137.7,170.1 142.9,170.5 148.1,170.8 153.3,170.9 158.5,170.8 163.8,170.5 169.0,170.1 174.2,169.4 179.4,168.6 184.6,167.6 189.8,166.4 195.0,165.1 200.2,163.6 205.4,161.9 210.6,160.1 215.8,158.1 221.0,156.0 226.2,153.8 231.5,151.5 236.7,149.1 241.9,146.6 247.1,144.0 252.3,141.3 257.5,138.6 262.7,135.8 267.9,133.0 273.1,130.1 278.3,127.3 283.5,124.4 288.8,121.6 294.0,118.8 299.2,116.0 304.4,113.2 309.6,110.6 314.8,108.0 320.0,105.5 325.2,103.0 330.4,100.7 335.6,98.5 340.8,96.4 346.0,94.5 351.2,92.7 356.5,91.0 361.7,89.5 366.9,88.1 372.1,87.0 377.3,86.0 382.5,85.1 387.7,84.5 392.9,84.0 398.1,83.7 403.3,83.6 408.5,83.7 413.8,84.0 419.0,84.5 424.2,85.1 429.4,86.0 434.6,87.0 439.8,88.1 445.0,89.5 450.2,91.0 455.4,92.7 460.6,94.5 465.8,96.4 471.0,98.5 476.2,100.7 481.5,103.0 486.7,105.5 491.9,108.0 497.1,110.6 502.3,113.2 507.5,116.0 512.7,118.8 517.9,121.6 523.1,124.4 528.3,127.3 533.5,130.1 538.8,133.0 544.0,135.8 549.2,138.6 554.4,141.3 559.6,144.0 564.8,146.6 570.0,149.1\" fill=\"none\" stroke=\"#D9772B\" stroke-width=\"4\"/>\n<text x=\"320\" y=\"246\" text-anchor=\"middle\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"14\" font-weight=\"700\" fill=\"#3B2A1A\">A camel's body temperature during one hot day</text>\n</svg>", "cap": "Letting its temperature rise in the day helps a camel save water."}, {"after": 3, "svg": "<svg viewBox=\"0 0 620 230\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"A camel's eye with long double eyelashes and a clear third eyelid, and nostrils open and closed\">\n<rect width=\"620\" height=\"230\" rx=\"16\" fill=\"#FBF3E6\"/>\n<text x=\"20\" y=\"28\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"16\" font-weight=\"800\" fill=\"#4B3F9E\">Sandstorm protection</text>\n<path d=\"M60 120 Q170 40 280 120 Q170 190 60 120 Z\" fill=\"#fff\" stroke=\"#8A6235\" stroke-width=\"3\"/>\n<circle cx=\"170\" cy=\"120\" r=\"34\" fill=\"#5B3A1E\"/><circle cx=\"170\" cy=\"120\" r=\"15\" fill=\"#1E140A\"/><circle cx=\"160\" cy=\"110\" r=\"6\" fill=\"#fff\"/>\n<path d=\"M170 82 Q238 92 262 120 Q238 150 170 158 Z\" fill=\"#9FD3E6\" opacity=\".55\" stroke=\"#4B8FB0\" stroke-width=\"2\"/>\n<path d=\"M70 112 l-6 -24\" stroke=\"#3B2A1A\" stroke-width=\"3\" stroke-linecap=\"round\"/><path d=\"M91 108 l-5 -24\" stroke=\"#3B2A1A\" stroke-width=\"3\" stroke-linecap=\"round\"/><path d=\"M112 105 l-4 -24\" stroke=\"#3B2A1A\" stroke-width=\"3\" stroke-linecap=\"round\"/><path d=\"M133 102 l-2 -24\" stroke=\"#3B2A1A\" stroke-width=\"3\" stroke-linecap=\"round\"/><path d=\"M154 101 l-1 -24\" stroke=\"#3B2A1A\" stroke-width=\"3\" stroke-linecap=\"round\"/><path d=\"M175 100 l0 -24\" stroke=\"#3B2A1A\" stroke-width=\"3\" stroke-linecap=\"round\"/><path d=\"M196 101 l1 -24\" stroke=\"#3B2A1A\" stroke-width=\"3\" stroke-linecap=\"round\"/><path d=\"M217 102 l2 -24\" stroke=\"#3B2A1A\" stroke-width=\"3\" stroke-linecap=\"round\"/><path d=\"M238 105 l4 -24\" stroke=\"#3B2A1A\" stroke-width=\"3\" stroke-linecap=\"round\"/><path d=\"M259 108 l5 -24\" stroke=\"#3B2A1A\" stroke-width=\"3\" stroke-linecap=\"round\"/><path d=\"M280 112 l6 -24\" stroke=\"#3B2A1A\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n<path d=\"M78 108 l-4 -16\" stroke=\"#7A5A3A\" stroke-width=\"2.5\" stroke-linecap=\"round\"/><path d=\"M99 104 l-3 -16\" stroke=\"#7A5A3A\" stroke-width=\"2.5\" stroke-linecap=\"round\"/><path d=\"M120 100 l-2 -16\" stroke=\"#7A5A3A\" stroke-width=\"2.5\" stroke-linecap=\"round\"/><path d=\"M141 98 l-1 -16\" stroke=\"#7A5A3A\" stroke-width=\"2.5\" stroke-linecap=\"round\"/><path d=\"M162 96 l0 -16\" stroke=\"#7A5A3A\" stroke-width=\"2.5\" stroke-linecap=\"round\"/><path d=\"M183 96 l1 -16\" stroke=\"#7A5A3A\" stroke-width=\"2.5\" stroke-linecap=\"round\"/><path d=\"M204 98 l2 -16\" stroke=\"#7A5A3A\" stroke-width=\"2.5\" stroke-linecap=\"round\"/><path d=\"M225 100 l3 -16\" stroke=\"#7A5A3A\" stroke-width=\"2.5\" stroke-linecap=\"round\"/><path d=\"M246 104 l4 -16\" stroke=\"#7A5A3A\" stroke-width=\"2.5\" stroke-linecap=\"round\"/><path d=\"M267 108 l5 -16\" stroke=\"#7A5A3A\" stroke-width=\"2.5\" stroke-linecap=\"round\"/>\n<text x=\"300\" y=\"70\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"13.5\" fill=\"#3B2A1A\">← two rows of long eyelashes</text>\n<text x=\"290\" y=\"128\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"13.5\" fill=\"#2E6F8E\" font-weight=\"700\">← clear third eyelid:</text>\n<text x=\"306\" y=\"146\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"13.5\" fill=\"#2E6F8E\">it closes, but the camel can still see</text>\n<g transform=\"translate(410 190)\">\n<ellipse cx=\"0\" cy=\"0\" rx=\"26\" ry=\"10\" fill=\"#3B2A1A\"/><text x=\"0\" y=\"28\" text-anchor=\"middle\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"13\" fill=\"#3B2A1A\">nostril open</text>\n<path d=\"M120 0 h50\" stroke=\"#3B2A1A\" stroke-width=\"5\" stroke-linecap=\"round\"/><text x=\"145\" y=\"28\" text-anchor=\"middle\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"13\" fill=\"#3B2A1A\">closed: no sand in</text>\n<text x=\"70\" y=\"5\" text-anchor=\"middle\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"18\" fill=\"#D9772B\">→</text>\n</g>\n</svg>", "cap": "Eyelashes, a clear third eyelid and closing nostrils keep the sand out."}]}, "B": {"title": "Camels and the UAE", "paras": ["For centuries, camels made life in the Arabian desert possible. They carried people and goods across long distances, and they gave families milk, meat and wool. Today, few Emiratis need camels for travel, but these animals are still an important part of the country's heritage and sport.", "Camel racing is one of the most popular traditional sports in the UAE. A racing camel can run at an average speed of about 40 km/h. Since 2005, the riders in UAE races have been robot jockeys that weigh only a few kilograms. Owners control them by remote while they drive cars along a road beside the track.", "Camels can also win prizes for their beauty. At the Al Dhafra Festival in Madinat Zayed, about 180 kilometres from Abu Dhabi on the edge of the Empty Quarter desert, thousands of camels take part in the mazayna, or camel beauty contest. Judges look for camels with big heads, wide necks, firm ears and broad cheeks. In the 2026–27 season, the prize money for these contests is more than AED 92 million.", "Camel milk is popular too. It contains about three times as much vitamin C as cow's milk. A camel gives only about 10 litres of milk a day, much less than a dairy cow, but in 2006 the Dubai company Camelicious started selling camel milk in shops. Today you can even buy camel milk chocolate."], "gloss": [["heritage", "تراث"], ["goods", "بضائع"], ["wool", "صوف"], ["average speed", "متوسط السرعة"], ["jockey", "راكب السباق"], ["remote (control)", "جهاز تحكم عن بُعد"], ["prize", "جائزة"], ["contest", "مسابقة"], ["judge", "حَكَم"], ["firm", "مشدود / ثابت"], ["cheek", "خدّ"], ["dairy cow", "بقرة حلوب"]], "bonus": ["Did you know? The 2026 Al Dhafra Festival is the festival's 20th edition.", "Bonus: Have you ever tried camel milk or visited a camel race or festival? Tell your partner about it."], "figs": [{"after": 1, "svg": "<svg viewBox=\"0 0 620 240\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"A racing camel with a small robot jockey, and a car beside the track sending remote-control signals\">\n<rect width=\"620\" height=\"240\" rx=\"16\" fill=\"#FBF3E6\"/>\n<rect x=\"0\" y=\"150\" width=\"620\" height=\"16\" fill=\"#E2CBA4\"/>\n<line x1=\"0\" y1=\"176\" x2=\"620\" y2=\"176\" stroke=\"#fff\" stroke-width=\"3\" stroke-dasharray=\"14 10\"/>\n<rect x=\"0\" y=\"182\" width=\"620\" height=\"40\" fill=\"#D8D2C8\"/>\n<g transform=\"translate(190 92) scale(0.8)\" fill=\"#C99A5B\" stroke=\"#8A6235\" stroke-width=\"2.5\" stroke-linejoin=\"round\">\n<rect x=\"-46\" y=\"10\" width=\"11\" height=\"62\" rx=\"5\"/><rect x=\"-30\" y=\"10\" width=\"11\" height=\"62\" rx=\"5\"/>\n<rect x=\"26\" y=\"10\" width=\"11\" height=\"62\" rx=\"5\"/><rect x=\"42\" y=\"10\" width=\"11\" height=\"62\" rx=\"5\"/>\n<path d=\"M-62 -2 q-14 10 -10 34\" fill=\"none\"/>\n<ellipse cx=\"0\" cy=\"0\" rx=\"64\" ry=\"30\"/>\n<path d=\"M-34 -22 Q-12 -63.6 30.0 -24 Z\"/>\n<path d=\"M50 -12 Q70 -30 74 -64 L90 -66 Q92 -30 66 6 Z\"/>\n<ellipse cx=\"94\" cy=\"-66\" rx=\"22\" ry=\"11\"/>\n<path d=\"M80 -76 l-3 -9 l7 5 z\"/>\n<circle cx=\"99\" cy=\"-69\" r=\"2.2\" fill=\"#8A6235\"/>\n</g>\n<g transform=\"translate(176 52)\"><rect x=\"-8\" y=\"-20\" width=\"16\" height=\"24\" rx=\"3\" fill=\"#4B3F9E\"/><circle cx=\"0\" cy=\"-27\" r=\"7\" fill=\"#9AA0B5\" stroke=\"#4B3F9E\" stroke-width=\"2\"/><path d=\"M8 -12 l14 -6\" stroke=\"#4B3F9E\" stroke-width=\"3\"/><path d=\"M0 -34 v-8\" stroke=\"#4B3F9E\" stroke-width=\"2\"/><circle cx=\"0\" cy=\"-44\" r=\"2.5\" fill=\"#B83280\"/></g>\n<text x=\"214\" y=\"30\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"13.5\" font-weight=\"700\" fill=\"#4B3F9E\">← robot jockey: only a few kg</text>\n<g transform=\"translate(420 168)\"><rect x=\"-60\" y=\"12\" width=\"120\" height=\"30\" rx=\"8\" fill=\"#FFFFFF\" stroke=\"#7A6A5A\" stroke-width=\"2.5\"/><path d=\"M-40 12 l14 -18 h46 l16 18 z\" fill=\"#E6E2F5\" stroke=\"#7A6A5A\" stroke-width=\"2.5\"/><circle cx=\"-34\" cy=\"44\" r=\"9\" fill=\"#3B2A1A\"/><circle cx=\"34\" cy=\"44\" r=\"9\" fill=\"#3B2A1A\"/></g>\n<path d=\"M400 150 q-14 -10 -6 -24\" stroke=\"#B83280\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M384 140 q-14 -10 -6 -24\" stroke=\"#B83280\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M368 130 q-14 -10 -6 -24\" stroke=\"#B83280\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\"/>\n<text x=\"600\" y=\"120\" text-anchor=\"end\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"13.5\" font-weight=\"700\" fill=\"#B83280\">owner's remote control</text>\n<text x=\"600\" y=\"138\" text-anchor=\"end\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"13\" fill=\"#3B2A1A\">from a car beside the track</text>\n<text x=\"330\" y=\"84\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"22\" font-weight=\"900\" fill=\"#D9772B\">→ about 40 km/h</text>\n</svg>", "cap": "Robot jockeys are controlled by remote from cars beside the track."}, {"after": 2, "svg": "<svg viewBox=\"0 0 620 250\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"A camel head and neck with the four things mazayna judges look for\">\n<rect width=\"620\" height=\"250\" rx=\"16\" fill=\"#FBF3E6\"/>\n<text x=\"20\" y=\"28\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"16\" font-weight=\"800\" fill=\"#4B3F9E\">What do the mazayna judges look for?</text>\n<g fill=\"#C99A5B\" stroke=\"#8A6235\" stroke-width=\"3\" stroke-linejoin=\"round\">\n<path d=\"M150 240 Q150 150 190 110 L240 110 Q215 170 225 240 Z\"/>\n<ellipse cx=\"250\" cy=\"95\" rx=\"70\" ry=\"38\"/>\n<path d=\"M205 66 l-8 -24 l20 14 z\"/><path d=\"M228 60 l-4 -24 l17 16 z\"/>\n</g>\n<circle cx=\"268\" cy=\"82\" r=\"5\" fill=\"#3B2A1A\"/>\n<ellipse cx=\"312\" cy=\"104\" rx=\"5\" ry=\"3\" fill=\"#3B2A1A\"/>\n<ellipse cx=\"248\" cy=\"112\" rx=\"22\" ry=\"13\" fill=\"#B88A50\" opacity=\".6\"/>\n<g font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"15\" font-weight=\"700\" fill=\"#3B2A1A\">\n<line x1=\"320\" y1=\"70\" x2=\"390\" y2=\"62\" stroke=\"#D9772B\" stroke-width=\"2\"/><text x=\"396\" y=\"67\">✔ a big head</text>\n<line x1=\"215\" y1=\"42\" x2=\"390\" y2=\"98\" stroke=\"#D9772B\" stroke-width=\"2\"/><text x=\"396\" y=\"103\">✔ firm ears</text>\n<line x1=\"265\" y1=\"120\" x2=\"390\" y2=\"138\" stroke=\"#D9772B\" stroke-width=\"2\"/><text x=\"396\" y=\"143\">✔ broad cheeks</text>\n<line x1=\"210\" y1=\"190\" x2=\"390\" y2=\"178\" stroke=\"#D9772B\" stroke-width=\"2\"/><text x=\"396\" y=\"183\">✔ a wide neck</text>\n</g>\n<text x=\"396\" y=\"222\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"13\" fill=\"#7A6A5A\">Al Dhafra Festival, Madinat Zayed</text>\n</svg>", "cap": "Mazayna judges look closely at the head, ears, cheeks and neck."}, {"after": 3, "svg": "<svg viewBox=\"0 0 620 220\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"Bar chart: camel milk has about three times as much vitamin C as cow's milk\">\n<rect width=\"620\" height=\"220\" rx=\"16\" fill=\"#FBF3E6\"/>\n<text x=\"20\" y=\"30\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"16\" font-weight=\"800\" fill=\"#4B3F9E\">Vitamin C in milk</text>\n<text x=\"40\" y=\"92\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"16\" font-weight=\"700\" fill=\"#3B2A1A\">🐄 cow's milk</text>\n<rect x=\"190\" y=\"72\" width=\"110\" height=\"30\" rx=\"6\" fill=\"#B9B3D9\"/><text x=\"310\" y=\"93\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"15\" fill=\"#3B2A1A\">× 1</text>\n<text x=\"40\" y=\"152\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"16\" font-weight=\"700\" fill=\"#3B2A1A\">🐪 camel milk</text>\n<rect x=\"190\" y=\"132\" width=\"330\" height=\"30\" rx=\"6\" fill=\"#D9772B\"/><text x=\"530\" y=\"153\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"15\" font-weight=\"800\" fill=\"#3B2A1A\">× 3</text>\n<text x=\"310\" y=\"200\" text-anchor=\"middle\" font-family=\"Segoe UI,DejaVu Sans,Arial,sans-serif\" font-size=\"13.5\" fill=\"#7A6A5A\">about three times as much vitamin C</text>\n</svg>", "cap": "Camel milk is rich in vitamin C."}]}, "groups": [{"from": 1, "to": 7, "title": "Questions 1–7", "inst": "Do the following statements agree with the information in the texts? Choose TRUE if the statement agrees with the information, FALSE if the statement contradicts the information, or NOT GIVEN if there is no information on this."}, {"from": 8, "to": 12, "title": "Questions 8–12", "inst": "Complete the sentences. Write NO MORE THAN TWO WORDS AND/OR A NUMBER for each answer."}, {"from": 13, "to": 16, "title": "Questions 13–16", "inst": "Which part of the camel is each statement about? Choose the correct letter, A–F. NB Some letters are not used.", "list": [["A", "the hump"], ["B", "the third eyelid"], ["C", "the nostrils"], ["D", "the feet"], ["E", "the red blood cells"], ["F", "the ears"]]}, {"from": 17, "to": 20, "title": "Questions 17–20", "inst": "Choose the correct letter, A, B, C or D."}], "Q": [{"type": "tfng", "src": "A", "q": "A camel's hump grows larger when the animal cannot find food.", "a": "FALSE", "why": "When food is hard to find, the hump becomes smaller (Text A, paragraph 1)."}, {"type": "tfng", "src": "B", "q": "The people who control robot jockeys ride on other camels during the race.", "a": "FALSE", "why": "Owners drive cars along a road beside the track (Text B, paragraph 2)."}, {"type": "tfng", "src": "A", "q": "Camels sweat less than horses in hot weather.", "a": "NOT GIVEN", "why": "Text A explains when camels sweat but never compares them with horses."}, {"type": "tfng", "src": "B", "q": "Camelicious was the first company in the world to sell camel milk.", "a": "NOT GIVEN", "why": "Text B says Camelicious started selling camel milk in 2006, but not that it was the first in the world."}, {"type": "tfng", "src": "A", "q": "A camel is able to see even when one of its eyelids is closed.", "a": "TRUE", "why": "The third eyelid is clear, so a camel can close it and still see (Text A, paragraph 4)."}, {"type": "tfng", "src": "B", "q": "The Al Dhafra Festival takes place in the city of Abu Dhabi.", "a": "FALSE", "why": "It is in Madinat Zayed, about 180 km from Abu Dhabi (Text B, paragraph 3)."}, {"type": "tfng", "src": "A+B", "q": "A robot jockey weighs less than the fat that a camel's hump can hold.", "a": "TRUE", "why": "Text B: a robot jockey weighs only a few kilograms. Text A: the hump can store up to about 36 kg of fat."}, {"type": "short", "src": "A", "q": "To stop sand getting in, a camel can completely close its ______ .", "a": "nostrils", "accept": ["nostrils", "nostril"], "limit": 2, "why": "Text A, paragraph 4."}, {"type": "short", "src": "B", "q": "Racing camels run at an average speed of about ______ .", "a": "40 km/h", "accept": ["40 km/h", "40km/h", "40 kph", "40 kmh", "40 km/hr", "forty km/h"], "limit": 2, "why": "Text B, paragraph 2. A number without a unit is incomplete."}, {"type": "short", "src": "A", "q": "In the cool night, a camel's body temperature can fall to about ______ .", "a": "34°C", "accept": ["34°c", "34 °c", "34c", "34 c", "34 degrees", "34°", "34"], "limit": 2, "why": "Text A, paragraph 3."}, {"type": "short", "src": "B", "q": "Camelicious started selling camel milk in shops in ______ .", "a": "2006", "accept": ["2006"], "limit": 2, "why": "Text B, paragraph 4."}, {"type": "short", "src": "A+B", "q": "A thirsty camel can drink as much water in ten minutes as it produces milk in about ______ .", "a": "10 days", "accept": ["10 days", "ten days"], "limit": 2, "why": "Text A: a camel can drink about 100 litres in ten minutes. Text B: a camel gives about 10 litres of milk a day. 100 ÷ 10 = 10 days."}, {"type": "match", "src": "A", "q": "It stores energy for times when food is difficult to find.", "a": "A", "why": "The hump stores fat that the camel uses for energy (Text A, paragraph 1)."}, {"type": "match", "src": "A", "q": "It spreads out so that the animal does not go down into the sand.", "a": "D", "why": "The feet spread out and stop the camel sinking (Text A, paragraph 5)."}, {"type": "match", "src": "B", "q": "Judges in the beauty contest prefer this part to be firm.", "a": "F", "why": "Judges look for firm ears (Text B, paragraph 3)."}, {"type": "match", "src": "A", "q": "It covers the eye but still lets light through.", "a": "B", "why": "The third eyelid is thin and clear (Text A, paragraph 4)."}, {"type": "mc", "src": "B", "q": "Why do camel owners use remote controls during a race?", "options": ["To steer their own cars along the road", "To measure how hot the camels become", "To start and stop the official race clock", "To give instructions to the robot jockeys"], "a": 3, "why": "Owners control the robot jockeys by remote (Text B, paragraph 2)."}, {"type": "mc", "src": "B", "q": "What is the main idea of the paragraph about the Al Dhafra Festival?", "options": ["Camel beauty is taken very seriously, with huge prizes.", "Madinat Zayed is the largest city in the Empty Quarter.", "Most camels in the UAE are too beautiful to race.", "Judges at the festival prefer camels with small heads."], "a": 0, "why": "The paragraph describes the beauty contest, what judges look for and the AED 92 million in prizes (Text B, paragraph 3)."}, {"type": "mc", "src": "A+B", "q": "Why were camels so useful to people in the Arabian desert for centuries?", "options": ["Their humps carried water that travellers could drink.", "They could carry people and goods far with little water.", "They were the only animals that could produce milk there.", "They could run at 40 km/h for a whole day without rest."], "a": 1, "why": "Text B: camels carried people and goods across long distances. Text A: camels save water and can survive about a week without drinking. Option A is the hump myth."}, {"type": "mc", "src": "A+B", "q": "Which feature helps a racing camel move fast across the sand?", "options": ["A large hump that is full of fresh water", "A body temperature that never changes", "Wide feet that spread out and do not sink", "A third eyelid that keeps its eyes closed"], "a": 2, "why": "Text B: racing camels run at about 40 km/h. Text A: wide feet spread out and stop the camel sinking into the sand."}], "sources": [["Camels store fat, not water, in their humps (EarthSky)", "https://earthsky.org/earth/do-camels-store-water-in-there-humps"], ["What's in a camel's hump; drinking 100 litres in 10 minutes (BYJU'S)", "https://blog.byjus.com/knowledge-vine/whats-inside-camels-hump-amazing-camel-facts"], ["Camel adaptations: third eyelid, nostrils, temperature 34–40°C (Camel: Ship of the Desert)", "https://trishansoz.com/trishansoz/animals/camel.html"], ["How do camels survive in deserts? (Natural History Museum)", "https://www.nhm.ac.uk/discover/how-do-camels-survive-in-deserts.html"], ["Large feet for walking on sand; temperature range (Science Project Ideas)", "https://scienceprojectideasforkids.com/a-camels-adaptive-characteristic/"], ["Robots ride camels in race, 2005 (Al Jazeera)", "https://www.aljazeera.com/news/2005/07/18/robots-ride-camels-in-race/"], ["Robot jockeys in the Emirates since 2005; controlled from SUVs (The Daily Beast)", "https://thedailybeast.com/dubais-camel-races-embrace-robot-jockeys"], ["Racing camel average speed of 40 km/h (Taipei Times)", "https://www.taipeitimes.com/News/feat/archives/2005/04/23/2003251677"], ["Camels compete for beauty prize: what judges look for (The National)", "https://www.thenationalnews.com/uae/camels-compete-for-beauty-prize-1.658160"], ["Al Dhafra camel pageant, 180 km from Abu Dhabi (Aletihad)", "https://en.aletihad.ae/news/culture/4461381/desert-beauties-steal-limelight-at-al-dhafra-camel-pageant"], ["20th Al Dhafra Festival, 2026–27 season prizes (Abu Dhabi Media Office)", "https://www.mediaoffice.abudhabi/en/arts-culture/under-patronage-of-uae-president-20th-al-dhafra-festival-to-begin-october-27/"], ["Camel milk: vitamin C, about 10 litres a day (Khaleej Times)", "https://www.khaleejtimes.com/business/dubai-camel-dairy-hopes-to-milk-health-food-market"], ["Camelicious launched in 2006 (Khaleej Times)", "https://www.khaleejtimes.com/lifestyle/health/savour-the-goodness-of-camel-milk"]]};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const LET="ABCD";
+const S={tab:"A",nA:"",nB:"",ans:{},checked:false,pen:"y",hl:{A:null,B:null}};
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show"),2800)}
+const T=[["A","Student A","#FFB070"],["B","Student B","#B9B0F0"],["Q","Questions","var(--AB)"],["R","My result","#fff"]];
+
+function tabs(){
+  $("#tabs").innerHTML=T.map(([k,l,c])=>`<button role="tab" aria-selected="${S.tab===k}" data-tab="${k}"><span class="dot" style="background:${c}"></span>${l}</button>`).join("");
+  document.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>{saveHL();S.tab=b.dataset.tab;render();window.scrollTo({top:0})});
+}
+
+/* ---------- text tabs ---------- */
+function textTab(r){
+  const P=D[r],other=r==="A"?"B":"A";
+  return `<div class="warn ${r}">⚠️ <div>This is <b>Student ${r}'s</b> text. Student ${other}: please don't read this tab! Your partner will tell you about it.
+     <div class="ar">هذا نص الطالبة ${r==="A"?"أ":"ب"}. الطالبة ${r==="A"?"ب":"أ"}: لا تقرئي هذه الصفحة!</div></div></div>
+  <div class="grid">
+   <article class="text ${r}"><span class="lab ${r}">TEXT ${r}</span><h2>${esc(P.title)}</h2>
+    <div id="paras">${S.hl[r]||P.paras.map((p,k)=>`<p>${esc(p)}</p>`+(P.figs||[]).filter(f=>f.after===k).map(f=>`<figure class="fig" contenteditable="false">${f.svg}<figcaption>${esc(f.cap)}</figcaption></figure>`).join("")).join("")}</div>
+   </article>
+   <aside class="side"><h3>🖍️ Highlighter</h3>
+    <div class="hlbar" role="group" aria-label="Highlighter">${[["y","Yellow"],["g","Green"],["p","Pink"]].map(([k,l])=>`<button class="pen ${k}" data-pen="${k}" aria-pressed="${S.pen===k}" aria-label="${l} highlighter" title="${l}"></button>`).join("")}<button class="pen er" data-pen="er" aria-pressed="${S.pen==="er"}" aria-label="Eraser" title="Eraser: tap a highlight to remove it">⌫</button></div>
+    <p class="hlnote">Choose a colour, then select words in the text. Use ⌫ and tap a highlight to remove it.</p>
+    <button class="clearhl" id="clr">Clear all my highlights</button>
+    <h3>📖 Word help</h3>
+    <ul class="words">${P.gloss.map(([w,a])=>`<li><b>${esc(w)}</b><span class="ar">${esc(a)}</span></li>`).join("")}</ul>
+    <button class="btn full" id="toQ">Go to the questions →</button>
+   </aside>
+  </div>`;
+}
+function bindText(r){
+  const box=$("#paras");
+  document.body.classList.toggle("erase",S.pen==="er");
+  document.querySelectorAll("[data-pen]").forEach(b=>b.onclick=()=>{S.pen=b.dataset.pen;document.querySelectorAll("[data-pen]").forEach(x=>x.setAttribute("aria-pressed",x===b));document.body.classList.toggle("erase",S.pen==="er")});
+  $("#clr").onclick=()=>{box.querySelectorAll("mark.hl").forEach(unwrap);saveHL();toast("All highlights cleared")};
+  $("#toQ").onclick=()=>{saveHL();S.tab="Q";render();window.scrollTo({top:0})};
+  const doHL=()=>{
+    if(S.pen==="er")return;
+    const sel=getSelection();if(!sel.rangeCount||sel.isCollapsed)return;
+    const rg=sel.getRangeAt(0);if(!box.contains(rg.commonAncestorContainer))return;
+    if(rg.startContainer.nodeType===3){let o=rg.startOffset;const t=rg.startContainer.nodeValue;while(o>0&&/[A-Za-z0-9'’]/.test(t[o-1]))o--;rg.setStart(rg.startContainer,o)}
+    if(rg.endContainer.nodeType===3){let o=rg.endOffset;const t=rg.endContainer.nodeValue;while(o<t.length&&/[A-Za-z0-9'’]/.test(t[o]))o++;rg.setEnd(rg.endContainer,o)}
+    const pOf=n=>(n.nodeType===3?n.parentNode:n).closest("p");
+    const p1=pOf(rg.startContainer),p2=pOf(rg.endContainer);
+    if(!p1||p1!==p2){sel.removeAllRanges();return toast("Please highlight inside one paragraph at a time.")}
+    if(!rg.toString().trim()){sel.removeAllRanges();return}
+    const m=document.createElement("mark");m.className="hl "+S.pen;
+    m.appendChild(rg.extractContents());
+    m.querySelectorAll("mark.hl").forEach(unwrap);
+    rg.insertNode(m);sel.removeAllRanges();box.normalize();saveHL();
+  };
+  box.addEventListener("mouseup",()=>setTimeout(doHL,0));
+  box.addEventListener("touchend",()=>setTimeout(doHL,300));
+  box.addEventListener("click",e=>{const m=e.target.closest("mark.hl");if(S.pen==="er"&&m){unwrap(m);box.normalize();saveHL()}});
+}
+function unwrap(m){const p=m.parentNode;while(m.firstChild)p.insertBefore(m.firstChild,m);p.removeChild(m)}
+function saveHL(){const b=$("#paras");if(b&&(S.tab==="A"||S.tab==="B"))S.hl[S.tab]=b.innerHTML}
+
+/* ---------- questions ---------- */
+function teamBox(){return `<div class="team"><h3>👭 Our team</h3>
+  <div class="a"><label for="nA">Student A's name</label><input type="text" id="nA" value="${esc(S.nA)}" autocomplete="off" placeholder="Type a name"></div>
+  <div class="b"><label for="nB">Student B's name</label><input type="text" id="nB" value="${esc(S.nB)}" autocomplete="off" placeholder="Type a name"></div></div>`}
+function srcTag(s){const k=s==="A+B"?"AB":s;return `<span class="src ${k}">${s==="A+B"?"Both texts":"Text "+s}</span>`}
+function G(i){return D.groups.find(g=>i+1>=g.from&&i+1<=g.to)}
+function questionsTab(){
+  return teamBox()+`<section class="sec"><span class="lab AB">WORK WITH YOUR PARTNER</span><h2>Camel questions · IELTS style</h2>
+   <p class="inst">Answer all 20 questions together, just like an IELTS Reading test. Some answers are in your text, some are in your partner's text, and some need <b>both</b> texts. Watch out: the questions use <b>different words</b> from the texts (paraphrase). Talk to each other, but don't show your screen! <span class="ar">أجيبا معاً، ولا تُريا الشاشة لبعضكما!</span></p>
+   ${D.Q.map((q,i)=>{
+     const a=S.ans[i];let body="";
+     if(q.type==="tfng")body=`<div class="tfrow">${["TRUE","FALSE","NOT GIVEN"].map(v=>`<button class="opt" data-q="${i}" data-v="${v}" aria-pressed="${a===v}">${v}</button>`).join("")}</div>`;
+     if(q.type==="match")body=`<div class="mrow">${G(i).list.map(([L,n])=>`<button class="opt" data-q="${i}" data-v="${L}" aria-pressed="${a===L}" title="${esc(n)}">${L}</button>`).join("")}</div>`;
+     if(q.type==="mc")body=`<div class="opts">${q.options.map((o,j)=>`<button class="opt" data-q="${i}" data-v="${j}" aria-pressed="${a===String(j)}"><span class="lt">${LET[j]}</span>${esc(o)}</button>`).join("")}</div>`;
+     if(q.type==="short")body=`<input class="short" data-q="${i}" value="${esc(a||"")}" autocomplete="off" placeholder="Type your answer"><span class="lim">max ${q.limit} words</span>`;
+     const g=D.groups.find(g=>g.from===i+1);
+     const head=g?`<div class="grp"><h3>${esc(g.title)}</h3><p>${esc(g.inst)}</p>${g.list?`<div class="mlist">${g.list.map(([L,n])=>`<div><b>${L}</b>&nbsp; ${esc(n)}</div>`).join("")}</div>`:""}</div>`:"";
+     return head+`<div class="q" id="q${i}"><div class="qh"><span class="num">${i+1}</span><div class="qt">${esc(q.q)}</div></div>${body}<div class="fb"></div></div>`;
+   }).join("")}
+   <div class="row noprint"><button class="btn" id="ck">✔ Check our answers</button>${S.checked?`<button class="btn ghost" id="again">↺ Try again</button>`:""}</div>
+  </section>`;
+}
+function norm(s){return String(s||"").trim().toLowerCase().replace(/[.!?"]/g,"").replace(/\s+/g," ")}
+function right(i){const q=D.Q[i],a=S.ans[i];if(a==null||a==="")return false;
+  if(q.type==="tfng"||q.type==="match")return a===q.a; if(q.type==="mc")return +a===q.a;
+  if(overLimit(i))return false;
+  return q.accept.includes(norm(a))}
+function overLimit(i){const q=D.Q[i];return q.type==="short"&&norm(S.ans[i]).split(" ").filter(Boolean).length>q.limit}
+function score(){const m={A:[0,0],B:[0,0],"A+B":[0,0]};D.Q.forEach((q,i)=>{m[q.src][1]++;if(right(i))m[q.src][0]++});const tot=D.Q.filter((q,i)=>right(i)).length;return {m,tot,max:D.Q.length}}
+function markAll(){
+  D.Q.forEach((q,i)=>{const c=$("#q"+i),ok=right(i);c.classList.add("done");c.classList.toggle("right",ok);c.classList.toggle("wrong",!ok);
+    if(q.type==="tfng"||q.type==="match")c.querySelector(`[data-v="${q.a}"]`).classList.add("correct");
+    if(q.type==="mc")c.querySelector(`[data-v="${q.a}"]`).classList.add("correct");
+    const ans=q.type==="mc"?`${LET[q.a]} (${q.options[q.a]})`:q.type==="match"?`${q.a} (${G(i).list.find(x=>x[0]===q.a)[1]})`:q.a;
+    const lim=overLimit(i)?" ⚠️ Too many words! In IELTS, an answer over the word limit is marked wrong.":"";
+    c.querySelector(".fb").innerHTML=`${srcTag(q.src)}${ok?"✅ <b>Correct!</b> ":`❌ <b>Answer:</b> ${esc(ans)}.${lim} `}${esc(q.why)}`;
+  });
+}
+function bindQ(){
+  const nA=$("#nA"),nB=$("#nB");
+  nA.oninput=()=>{S.nA=nA.value;const c=$("#cA");if(c)c.textContent=S.nA||"Student A"};
+  nB.oninput=()=>{S.nB=nB.value;const c=$("#cB");if(c)c.textContent=S.nB||"Student B"};
+  document.querySelectorAll(".opt[data-q]").forEach(b=>b.onclick=()=>{if(S.checked)return;const i=b.dataset.q;S.ans[i]=b.dataset.v;b.parentNode.querySelectorAll(".opt").forEach(x=>x.setAttribute("aria-pressed",x===b))});
+  document.querySelectorAll(".short").forEach(inp=>inp.oninput=()=>{S.ans[inp.dataset.q]=inp.value});
+  if(S.checked)markAll();
+  $("#ck").onclick=()=>{
+    if(S.checked){S.tab="R";render();return}
+    if(!S.nA.trim()||!S.nB.trim()){toast("Write both team names at the top first.");(!S.nA.trim()?nA:nB).focus();window.scrollTo({top:0,behavior:"smooth"});return}
+    const miss=D.Q.map((q,i)=>(S.ans[i]==null||String(S.ans[i]).trim()==="")?i+1:0).filter(Boolean);
+    if(miss.length){toast("Please answer every question. Missing: "+miss.join(", "));return}
+    S.checked=true;markAll();
+    $("#ck").textContent="See our result →";
+    const sc=score();toast(`You scored ${sc.tot} / ${sc.max}! Scroll to see the answers, or open My result.`);
+    if(sc.tot>=Math.ceil(sc.max*.8))confetti();
+  };
+  const ag=$("#again");if(ag)ag.onclick=()=>{S.ans={};S.checked=false;render();toast("Answers cleared. Try again together!")};
+}
+
+/* ---------- result ---------- */
+function resultTab(){
+  if(!S.checked)return `<div class="res empty">Answer the questions with your partner and press <b>Check our answers</b> first. 🐪</div>`;
+  const m=score(),pass=m.tot>=Math.ceil(m.max*.8);
+  return `<div class="res"><div class="row" style="margin-top:0;align-items:center"><div class="big">${m.tot} / ${m.max}</div>
+   <div><b style="font-size:22px">${pass?"Fantastic teamwork! 🐪":"Good effort! ☀️"}</b><br>${pass?"You shared your information well and helped each other.":"You need 16 / 20 for the team certificate. Go back to the Questions tab, look at the answers, then press Try again."}</div></div>
+   <div class="split">
+    <div class="sp A">Text A questions<b>${m.m.A[0]} / ${m.m.A[1]}</b></div>
+    <div class="sp B">Text B questions<b>${m.m.B[0]} / ${m.m.B[1]}</b></div>
+    <div class="sp AB">Both texts<b>${m.m["A+B"][0]} / ${m.m["A+B"][1]}</b></div>
+   </div>
+   <p class="inst">Tip: if one text has a low score, the answers in that text were not explained clearly enough. Read that text together now.</p>
+   ${pass?`<div class="noprint">${teamBox()}</div>
+   <div class="cert"><div class="seal">TEAM<br>READERS<br>🐪</div><div style="font-size:42px">🐪 ☀️ 🐪</div><h4>Team Certificate</h4><div>This certifies that</div>
+    <div class="nm"><span id="cA">${esc(S.nA)||"Student A"}</span> &amp; <span id="cB">${esc(S.nB)||"Student B"}</span></div>
+    <div>worked together as a team to complete the IELTS-style jigsaw reading <i>Camels: Ships of the Desert</i>,<br>sharing information and helping each other, with a score of <b>${m.tot} / ${m.max}</b>.</div>
+    <div style="margin-top:8px">${new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})}</div>
+    <div style="margin-top:14px;font-family:var(--serif);font-style:italic">Designed by: Nazila Motahari · Higher Colleges of Technology</div></div>
+   <div class="row noprint"><button class="btn amber" id="pr">🖨️ Print / Save as PDF</button></div>`:""}
+  </div>`;
+}
+function bindR(){
+  const pr=$("#pr");if(pr)pr.onclick=()=>window.print();
+  const nA=$("#nA"),nB=$("#nB");
+  if(nA)nA.oninput=()=>{S.nA=nA.value;$("#cA").textContent=S.nA||"Student A"};
+  if(nB)nB.oninput=()=>{S.nB=nB.value;$("#cB").textContent=S.nB||"Student B"};
+  if(S.checked&&score().tot>=16)confetti();
+}
+
+function render(){
+  tabs();const A=$("#app");
+  if(S.tab==="A"||S.tab==="B"){A.innerHTML=textTab(S.tab);bindText(S.tab)}
+  else{document.body.classList.remove("erase");
+    if(S.tab==="Q"){A.innerHTML=questionsTab();bindQ()}
+    else{A.innerHTML=resultTab();bindR()}}
+}
+function confetti(){
+  const c=$("#cf"),x=c.getContext("2d");c.width=innerWidth;c.height=innerHeight;
+  const col=["#D9772B","#FFB070","#4B3F9E","#B83280","#FFD58A"];
+  const P=Array.from({length:160},()=>({x:Math.random()*c.width,y:-Math.random()*c.height*.6,r:5+Math.random()*6,c:col[Math.random()*5|0],v:2+Math.random()*3,h:-1.5+Math.random()*3,a:Math.random()*6}));
+  let f=0;(function t(){x.clearRect(0,0,c.width,c.height);P.forEach(p=>{p.y+=p.v;p.x+=p.h;p.a+=.1;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;x.fillRect(-p.r/2,-p.r/2,p.r,p.r*1.5);x.restore()});if(++f<220)requestAnimationFrame(t);else x.clearRect(0,0,c.width,c.height)})();
+}
+render();
+</script>
+</body>
+</html>
